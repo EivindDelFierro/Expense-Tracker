@@ -1,12 +1,12 @@
 const { merge } = require("webpack-merge");
-const { SRC, DIST, ASSETS } = require("./paths");
+const { DIST } = require("./paths.js");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 // merge development specific configurations with base configurations
-module.exports = merge(require("./config.base.js"), {
+module.exports = merge(require("./webpack.config.common.js"), {
   mode: "development",
 
-  // enables source maps in order to track in errors
+  // option to control if and how source maps are generated, in this case it is enabled to track in errors
   devtool: "inline-source-map",
 
   //simplifies HTML file creation
@@ -24,8 +24,5 @@ module.exports = merge(require("./config.base.js"), {
     },
     // serves files from the DIST directory
     static: DIST,
-    // port: 3000,
-    // publicPath: "http://localhost:3000/",
-    // hot: true,
   },
 });

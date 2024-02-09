@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack serve --open --config build/config.development.js",
-    "prod": "webpack --config build/config.production.js"
+    "dev": "webpack serve --open --config build/webpack.config.dev.js",
+    "build": "webpack --config build/webpack.config.prod.js"
   },
   "repository": {
     "type": "git",
