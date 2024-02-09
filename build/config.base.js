@@ -50,5 +50,8 @@ module.exports = {
 
     // output path that is seen from the domain
     publicPath: ASSETS,
+
+    // cleans up output folder before each build
+    clean: true,
   },
 };
