@@ -1,0 +1,39 @@
+{
+  "name": "expense-tracker",
+  "version": "1.0.0",
+  "description": "Expense tracker built with React",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack --config build/config.development.js",
+    "prod": "webpack --config build/config.production.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EivindDelFierro/Expense-Tracker.git"
+  },
+  "keywords": [
+    "expense",
+    "tracker"
+  ],
+  "author": "Eivind Del Fierro",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EivindDelFierro/Expense-Tracker/issues"
+  },
+  "homepage": "https://github.com/EivindDelFierro/Expense-Tracker#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.23.9",
+    "@babel/core": "^7.23.9",
+    "@babel/preset-env": "^7.23.9",
+    "@babel/preset-react": "^7.23.3",
+    "babel-loader": "^9.1.3",
+    "css-loader": "^6.10.0",
+    "html-loader": "^5.0.0",
+    "style-loader": "^3.3.4",
+    "webpack": "^5.90.1",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^4.15.1",
+    "webpack-merge": "^5.10.0"
+  }
+}

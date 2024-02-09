@@ -25,6 +25,18 @@ module.exports = {
         test: /\.css$/i,
         use: ["style-loader", "css-loader"],
       },
+
+      // "Asset Module" for processing images
+      {
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: "asset/resource",
+      },
+
+      // HTML loader for processing images using html links
+      {
+        test: /\.html$/i,
+        loader: "html-loader",
+      },
     ],
   },
 
