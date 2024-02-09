@@ -1,6 +1,7 @@
 const { merge } = require("webpack-merge");
 const { DIST } = require("./paths.js");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const TerserPlugin = require("terser-webpack-plugin");
 
 // merge development specific configurations with base configurations
 module.exports = merge(require("./webpack.config.common.js"), {
@@ -22,7 +23,41 @@ module.exports = merge(require("./webpack.config.common.js"), {
       // shows a full screen overlay in the browser when there are compiler errors or warnings
       overlay: true,
     },
-    // serves files from the DIST directory
-    static: DIST,
+
+    static: {
+      // serves files from the DIST directory
+      directory: DIST,
+      // serves content from directory at host/publicPath/ in this case "localhost:8080/"
+      publicPath: "/",
+    },
+
+    // specification which port to listen for requests
+    port: 8080,
+
+    // function that is invoked when server begins listening for connections
+    onListening: function (devServer) {
+      if (!devServer) {
+        throw new Error(
+          "devServer Initialization error: webpack-dev-server is not defined"
+        );
+      }
+
+      const port = devServer.server.address().port;
+      console.log("devServer listening on port:", port);
+    },
   },
+
+  // optimization: {
+  //   minimize: false,
+  //   minimizer: [
+  //     new TerserPlugin({
+  //       terserOptions: {
+  //         format: {
+  //           comments: true,
+  //         },
+  //       },
+  //       extractComments: false,
+  //     }),
+  //   ],
+  // },
 });

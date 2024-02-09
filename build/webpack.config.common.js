@@ -6,7 +6,7 @@ module.exports = {
 
   // defines where the application starts and where to start bundling files
   entry: {
-    bundle: path.resolve(SRC, "js", "index.js"),
+    bundle: path.resolve(SRC, "index.js"),
   },
 
   // modules chains are executed in reverse order with webpack expecting the last loader to return JavaScript
@@ -15,7 +15,7 @@ module.exports = {
       // ruleset for processing JSX entries
       {
         test: /\.(js|jsx)$/,
-        exclude: /(node_modules|bower_components)/,
+        exclude: /(node_modules|browser_components)/,
         loader: "babel-loader",
         options: { presets: ["@babel/env"] },
       },
