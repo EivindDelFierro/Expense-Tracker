@@ -1,10 +1,27 @@
 {
   "root": true,
+
   "extends": [
     "eslint:recommended", // utilizes eslint's recommended linting rules as the base
-    "react-app", // utilizes eslint-config-react-app
-    "plugin:react/jsx-runtime",
-    "prettier"
+    "react-app", // utilizes eslint-config-react-app and allows parsing of jsx files
+    "plugin:react/jsx-runtime", // disables rules that require importing React at the beginning of each file
+    "prettier" // disables rules defined by above configs/plugins that conflict with prettier
   ],
+
+  // allows ESLint to know current React version for dependant plugins
+  "settings": {
+    "react": {
+      "reactVersion": "detect"
+    }
+  },
+
+  // explicitly including parsing options for clarity only. Extends configs already have allowed jsx parsing
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+
+  // excludes production directory that may be minified or uglified by webpack
   "excludeFiles": "/dist/*"
 }
