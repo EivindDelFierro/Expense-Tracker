@@ -55,13 +55,13 @@ The application may be run by opening 'index.html'
 
 ## Notes
 
-Technologies Utilized:
+1. Technologies Utilized:
 
 ```
 JavaScript, React, Webpack, HTML, CSS
 ```
 
-Dependency explanation:
+2. Dependency explanation:
 
 ```
 Babel (and related libraries): Allows simplified transpilation of ES6 to ES5 to facilitate backwards compatibility with older browsers such as IE11.
