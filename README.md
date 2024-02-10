@@ -32,13 +32,15 @@ Install application relevant dependencies.
 npm install
 ```
 
-to use the developer build with the use of webPack devServer, you may run the following script:
+## Building
+
+To use the developer build with the use of webPack devServer with hot module reloading turned on, you may run the following script which produces an output with minimal optimizations:
 
 ```bash
 npm run dev
 ```
 
-this has minimal optimizations.
+This will also automatically launch the application.
 
 To create the release build with optimizations such as minification and uglification, run the following script:
 
@@ -67,12 +69,16 @@ JavaScript, React, Webpack, HTML, CSS
 Babel (and related libraries): Allows simplified transpilation of ES6 to ES5 to facilitate backwards compatibility with older browsers such as IE11.
 
 ESLint: Automates development opinions as documented in configuration file, improving consistency and maintainability.
+- eslint-config-prettier: Disables rules that conflict with prettier and is faster than eslint-plugin-prettier, makes prettier act as the linter, which is slower
+- eslint-config-react-app: Has appropriate rule sets for react development, including support for hooks
 
 html-loader: Utilized to conver html links into strings.
 
 html-webpack-plugin: Simplified HTML file creation during webpack build compilation.
 
 Prettier: Automate code formatting, improving code consistency
+
+react: Modularizes front-end development by allowing reusable component functions.
 
 react-dom: Provides methods to allow rendering of React applications
 

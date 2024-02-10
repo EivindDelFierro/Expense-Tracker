@@ -1,0 +1,10 @@
+{
+  "root": true,
+  "extends": [
+    "eslint:recommended", // utilizes eslint's recommended linting rules as the base
+    "react-app", // utilizes eslint-config-react-app
+    "plugin:react/jsx-runtime",
+    "prettier"
+  ],
+  "excludeFiles": "/dist/*"
+}
