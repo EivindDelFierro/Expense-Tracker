@@ -7,5 +7,6 @@ module.exports = {
   // base path to generated bundles
   DIST: path.resolve(__dirname, "..", "dist"),
 
-  ASSETS: "/dist/",
+  // assets resolve to directory where bundle output is generated
+  ASSETS: "./",
 };

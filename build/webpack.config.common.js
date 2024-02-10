@@ -20,7 +20,7 @@ module.exports = {
         options: { presets: ["@babel/env"] },
       },
 
-      // ruleset for processing CSS entries
+      // ruleset for processing CSS then stylesheet entries
       {
         test: /\.css$/i,
         use: ["style-loader", "css-loader"],
@@ -32,7 +32,7 @@ module.exports = {
         type: "asset/resource",
       },
 
-      // HTML loader for processing images using html links
+      // HTML loader for processing html into strings
       {
         test: /\.html$/i,
         loader: "html-loader",
@@ -53,5 +53,10 @@ module.exports = {
 
     // cleans up output folder before each build
     clean: true,
+  },
+
+  resolve: {
+    // resolves extensions in order. If multiple files share a name, resolves the extension listed first and skips the rest. allows users to leave off expensions when importing. Note: will overide default extensions array unless '...' us tge last entry in the custom definited array.
+    extensions: [".js", ".jsx"],
   },
 };
