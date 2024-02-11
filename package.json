@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack serve --open --config build/webpack.config.dev.js",
-    "build": "webpack --config build/webpack.config.prod.js",
-    "lint": "eslint src/**/*.js src/**/*.jsx"
+    "dev": "webpack serve --open --config webpack/config.dev.js",
+    "build": "webpack --config webpack/config.prod.js",
+    "lint": "eslint **/*.js **/*.jsx"
   },
   "repository": {
     "type": "git",

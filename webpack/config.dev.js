@@ -1,10 +1,9 @@
 const { merge } = require("webpack-merge");
 const { DIST } = require("./paths.js");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const TerserPlugin = require("terser-webpack-plugin");
 
 // merge development specific configurations with base configurations
-module.exports = merge(require("./webpack.config.common.js"), {
+module.exports = merge(require("./config.common.js"), {
   mode: "development",
 
   // option to control if and how source maps are generated, in this case it is enabled to track in errors
@@ -46,18 +45,4 @@ module.exports = merge(require("./webpack.config.common.js"), {
       console.log("devServer listening on port:", port);
     },
   },
-
-  // optimization: {
-  //   minimize: false,
-  //   minimizer: [
-  //     new TerserPlugin({
-  //       terserOptions: {
-  //         format: {
-  //           comments: true,
-  //         },
-  //       },
-  //       extractComments: false,
-  //     }),
-  //   ],
-  // },
 });

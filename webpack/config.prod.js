@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 
 // merge production specific configurations with base configurations
-module.exports = merge(require("./webpack.config.common.js"), {
+module.exports = merge(require("./config.common.js"), {
   mode: "production",
 
   //simplifies HTML file creation

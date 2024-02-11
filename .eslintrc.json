@@ -11,17 +11,18 @@
   // allows ESLint to know current React version for dependant plugins
   "settings": {
     "react": {
-      "reactVersion": "detect"
+      "version": "detect"
     }
   },
 
   // explicitly including parsing options for clarity only. Extends configs already have allowed jsx parsing
   "parserOptions": {
+    "sourceType": "module",
     "ecmaFeatures": {
       "jsx": true
     }
   },
 
-  // excludes production directory that may be minified or uglified by webpack
-  "excludeFiles": "/dist/*"
+  // ignores linting in production folder
+  "ignorePatterns": ["/dist/*"]
 }
