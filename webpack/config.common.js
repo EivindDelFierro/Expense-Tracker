@@ -1,5 +1,5 @@
 const path = require("path");
-const { SRC, DIST, ASSETS } = require("./paths");
+const { SRC, DIST } = require("./paths");
 
 module.exports = {
   // webpack configuration for all environments
@@ -9,10 +9,35 @@ module.exports = {
     bundle: path.resolve(SRC, "index.js"),
   },
 
-  // modules chains are executed in reverse order with webpack expecting the last loader to return JavaScript
+  // modules rules and loader/use chains are executed in reverse order with webpack expecting the last loader to return JavaScript
   module: {
     rules: [
-      // ruleset for processing JSX entries
+      // HTML loader for processing html into strings
+      {
+        test: /\.html$/i,
+        loader: "html-loader",
+      },
+
+      // Loaders for processing styles
+      {
+        test: /\.s[ac]ss$/i,
+        use: [
+          // Creates `style` nodes from JS strings
+          "style-loader",
+          // Translates CSS into CommonJS
+          "css-loader",
+          // Compiles Sass to CSS
+          "sass-loader",
+        ],
+      },
+
+      // "Asset Module" for processing images
+      {
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: "asset/resource",
+      },
+
+      // Loaders for transpiling ES6 and JSX entries into ES5 JavaScript
       {
         test: /\.(js|jsx)$/,
         exclude: /(node_modules|browser_components)/,
@@ -30,37 +55,19 @@ module.exports = {
           ],
         },
       },
-
-      // ruleset for processing CSS then stylesheet entries
-      {
-        test: /\.css$/i,
-        use: ["style-loader", "css-loader"],
-      },
-
-      // "Asset Module" for processing images
-      {
-        test: /\.(png|svg|jpg|jpeg|gif)$/i,
-        type: "asset/resource",
-      },
-
-      // HTML loader for processing html into strings
-      {
-        test: /\.html$/i,
-        loader: "html-loader",
-      },
     ],
   },
 
   // configuration settings for webpack bundle output
   output: {
-    // destination folder of bundled application
+    // destination folder of where bundled application is saved
     path: DIST,
 
     // [name] will be replaced by the entry key, bundle, to create bundle.js
     filename: "[name].js",
 
-    // output path that is seen from the domain
-    publicPath: ASSETS,
+    // URL path relative to the server/domain for the output files generated in output.path (e.g. accessing index.html in output.path may be localhost:3000/)
+    publicPath: "/",
 
     // cleans up output folder before each build
     clean: true,

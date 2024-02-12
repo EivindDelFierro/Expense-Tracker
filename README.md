@@ -60,31 +60,34 @@ The application may be run by opening 'index.html'
 1. Technologies Utilized:
 
 ```
-JavaScript, React, Webpack, HTML, CSS
+JavaScript, React, Webpack, Sass, CSS, HTML
 ```
 
 2. Dependency explanation:
 
 ```
 Babel (and related libraries): Allows simplified transpilation of ES6 to ES5 to facilitate backwards compatibility with older browsers such as IE11.
+- @babel/preset-react: Enabled the use of JSX transform to reduce the need for importing React into every JSX files unless required for other React features (e.g. hooks).
 
 ESLint: Automates development opinions as documented in configuration file, improving consistency and maintainability.
 - eslint-config-prettier: Disables rules that conflict with prettier and is faster than eslint-plugin-prettier, makes prettier act as the linter, which is slower
 - eslint-config-react-app: Has appropriate rule sets for react development, including support for hooks
 
-html-loader: Utilized to conver html links into strings.
-
-html-webpack-plugin: Simplified HTML file creation during webpack build compilation.
-
 Prettier: Automate code formatting, improving code consistency
 
-react: Modularizes front-end development by allowing reusable component functions.
+React: Modularizes front-end development by allowing reusable component functions.
+- react-dom: Provides methods to allow rendering of React applications
 
-react-dom: Provides methods to allow rendering of React applications
+Sass:
 
-terser-webpack-plugin: Enables built in minification and uglification optimization options in Webpack.
+stylelint:
+- stylelint-config-standard-scss: extends standard stylelint configuration to include SCSS
+- stylelint-config-prettier-scss: Disables rules that conflict with prettier
 
-Webpack (and related libraries): Allows modular development of application with transpilation to JavaScript through the use of loaders.
-
-webpack-merge: Facilitated modular webpack configurations depending on environment.
+Webpack (and related libraries): Allows modular development of application with transpilation to JavaScript through the use of loaders. Allowed the use of webpack-dev-server for hot reload debugging
+- html-loader: Utilized to conver html links into strings.
+- html-webpack-plugin: Simplified HTML file creation during webpack build compilation.
+- sass-loader:
+- terser-webpack-plugin: Enables built in minification and uglification optimization options in Webpack.
+- webpack-merge: Facilitated modular webpack configurations depending on environment.
 ```

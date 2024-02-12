@@ -1,6 +1,7 @@
 const { merge } = require("webpack-merge");
-const { DIST } = require("./paths.js");
+const { SRC, ASSETS } = require("./paths.js");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const path = require("path");
 
 // merge development specific configurations with base configurations
 module.exports = merge(require("./config.common.js"), {
@@ -13,6 +14,7 @@ module.exports = merge(require("./config.common.js"), {
   plugins: [
     new HtmlWebpackPlugin({
       title: "Development: Expense Tracker",
+      favicon: path.join(SRC, "assets/devFavicon.ico"),
     }),
   ],
 
@@ -24,27 +26,13 @@ module.exports = merge(require("./config.common.js"), {
     },
 
     static: {
-      // serves files from the DIST directory
-      directory: DIST,
-      // serves content from directory at host/publicPath/ in this case "localhost:8080/"
-      publicPath: "/",
+      // directory in which static files are served from by the development server
+      directory: ASSETS,
+      // public URL path that the browser uses to access static files relative to the server/domain
+      publicPath: "/assets/",
     },
 
     // specification which port to listen for requests
-    port: 8080,
-
-    open: true,
-
-    // function that is invoked when server begins listening for connections
-    onListening: function (devServer) {
-      if (!devServer) {
-        throw new Error(
-          "devServer Initialization error: webpack-dev-server is not defined"
-        );
-      }
-
-      const port = devServer.server.address().port;
-      console.log("devServer listening on port:", port);
-    },
+    port: 3000,
   },
 });

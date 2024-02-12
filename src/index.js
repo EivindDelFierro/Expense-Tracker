@@ -4,12 +4,12 @@ import App from "./app";
 import "./style.css";
 
 document.addEventListener("DOMContentLoaded", () => {
-  // establish an app element for React library to hook on to
+  // create an app element
   const element = document.createElement("div");
   element.setAttribute("id", "app");
-  document.body.append(element);
+  document.body.appendChild(element);
 
-  // create a React root from the app element
+  // create a React root by hooking on to the body element
   const root = createRoot(document.querySelector("#app"));
   root.render(<App />);
 });
