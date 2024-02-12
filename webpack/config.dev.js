@@ -33,6 +33,8 @@ module.exports = merge(require("./config.common.js"), {
     // specification which port to listen for requests
     port: 8080,
 
+    open: true,
+
     // function that is invoked when server begins listening for connections
     onListening: function (devServer) {
       if (!devServer) {

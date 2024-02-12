@@ -1,6 +1,11 @@
 {
   "root": true,
 
+  "env": {
+    "browser": true,
+    "es6": true
+  },
+
   "extends": [
     "eslint:recommended", // utilizes eslint's recommended linting rules as the base
     "react-app", // utilizes eslint-config-react-app and allows parsing of jsx files

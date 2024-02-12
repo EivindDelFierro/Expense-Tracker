@@ -17,7 +17,18 @@ module.exports = {
         test: /\.(js|jsx)$/,
         exclude: /(node_modules|browser_components)/,
         loader: "babel-loader",
-        options: { presets: ["@babel/env"] },
+        options: {
+          presets: [
+            "@babel/preset-env",
+            [
+              "@babel/preset-react",
+              {
+                // "runtime: automatic" enables the use of JSX without importing React into each file. Importing React is still needed to use Hooks or other React specific features.
+                runtime: "automatic",
+              },
+            ],
+          ],
+        },
       },
 
       // ruleset for processing CSS then stylesheet entries
