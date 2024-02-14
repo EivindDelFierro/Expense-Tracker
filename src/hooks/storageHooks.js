@@ -1,51 +1,86 @@
-// utilizes HTML web storage api to save files locally in a browser
-
-/*
-interface obj = {
-  uuid: uuid
-  date: string
-  type: string
-  merchant?: string
-  amount: number
+/* Database layout
+localStorage.db = {
+  uuid: {
+    uuid: uuid
+    year: number
+    month: number
+    day: number
+    type: string
+    merchant?: string
+    amount: number
+  }
 }
 */
+
+/*
+  Local storage
+*/
 const ls = window.localStorage;
-export const knownUUIDArray = new Set();
+const uuidSet = new Set();
+let cache = {};
 
 const storageHook = {
   initialize: () => {
-    if (!knownUUIDArray.length && knownUUIDArray.length) {
-      const retrieved = this.read();
+    if (!ls.db) {
+      this.write(cache);
+      ls.setItem("uuid", JSON.stringify(uuidSet));
+    } else {
+      const storedUuidArray = JSON.parse(ls.getItem("uuid"));
 
-      retrieved.forEach((obj) => {
-        knownUUIDArray.add(obj.uuid);
+      storedUuidArray.forEach((element) => {
+        uuidSet.add(element);
       });
 
-      console.log("Local storage loaded");
+      cache = JSON.parse(ls.getItem("db"));
     }
   },
 
   create: (obj) => {
-    // what if uuid already exists?
-    const objString = JSON.stringify(obj);
-    ls[obj.uuid] = objString;
-    return;
+    const { uuid } = obj;
+
+    if (uuidSet.has(uuid)) return "ID already exists.";
+
+    cache[uuid] = {
+      ...obj,
+    };
+
+    this.write(cache);
+    return "New entry stored.";
   },
 
-  read: () => {
-    // returns an array of all objects stored in local storage
-    const arrayOfIds = Object.getOwnPropertyNames(ls);
+  read: (uuid) => {
+    cache = JSON.parse(ls.getItem("db"));
 
-    return arrayOfIds.reduce((acc, uuid) => {
-      const parsedObj = JSON.parse(ls.getItem[uuid]);
-      acc.push(parsedObj);
-      return acc;
-    }, []);
+    if (uuid) return cache[uuid]; // return a single entry from localStorage
+    return Object.values(cache); // return an array of all entries from localStorage
   },
 
-  delete: (uuid) => {},
+  update: (obj) => {
+    const { uuid } = obj;
+    if (!uuidSet.has(uuid)) return "Entry not found.";
+    cache[uuid] = { ...cache[uuid], ...obj };
+    this.write(cache);
+    return `Entry with ID ${uuid} updated.`;
+  },
 
-  clear: () => ls.clear(),
+  delete: (uuid) => {
+    if (cache[uuid]) {
+      delete cache[uuid];
+      return "Entry deleted.";
+    } else {
+      return "Invalid entry.";
+    }
+  },
+
+  clear: () => {
+    ls.clear();
+    return "Local storage cleared!";
+  },
+
+  write: (cache) => {
+    const cacheString = JSON.stringify(cache);
+    ls.setItem("db", cacheString);
+  },
 };
 
 export default storageHook;
