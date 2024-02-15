@@ -1,7 +1,7 @@
 import { createRoot } from "react-dom/client";
 import App from "./app";
 
-import "./style.css";
+import "./style.scss";
 
 document.addEventListener("DOMContentLoaded", () => {
   // create an app element

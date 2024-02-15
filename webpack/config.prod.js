@@ -8,7 +8,7 @@ const path = require("path");
 module.exports = merge(require("./config.common.js"), {
   mode: "production",
 
-  //simplifies HTML file creation
+  // Automatically generates an HTML file on bundle creation
   plugins: [
     new HtmlWebpackPlugin({
       title: "Expense Tracker",

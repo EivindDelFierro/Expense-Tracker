@@ -1,3 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=Borel&display=swap");
+
+$primary: #0c2e51;
+$secondary: #e1f4fa;
+$lightBlueTint: #f6fbfd;
+$lightBlueShade: #b3c2c6;
+
+body {
+  background-color: $lightBlueTint;
+  margin: 0;
+}
+
 #app {
   display: flex;
   flex-direction: column;
@@ -6,26 +18,47 @@
 /* Logo styling */
 
 .full-logo {
-  align-self: center;
+  display: flex;
+  flex-direction: row;
+  // justify-content: center;
+  align-items: center;
+  padding-left: 5dvh;
+  // font-family: Borel;
+  #full-logo-image {
+    margin-right: 10px;
+  }
+}
+
+.logo-text {
+  font-family: Borel;
+  font-size: larger;
+  color: $primary;
 }
 
 /* Top Bar Container styling */
 #top-bar-container {
   flex-direction: row;
-  justify-content: space-between;
-  padding-left: 5%;
-  padding-right: 5%;
+  align-items: center;
+  justify-content: space-around;
   height: 5%;
-  border-bottom: 2px;
-  border-color: blue;
+  background-color: $secondary;
+  border-bottom: 0.1875rem ridge $primary;
 }
 
 /* Graph Container styling */
 #graph-container {
   flex-direction: row;
+  margin-top: 25px;
+  margin-left: 10dvh;
+  margin-right: 10dvh;
+  border: 2px ridge blue;
 }
 
 /* Spreadsheet container styling */
 #spreadsheet-container {
   flex-direction: column;
+  margin-top: 25px;
+  margin-left: 10dvh;
+  margin-right: 10dvh;
+  border: 2px ridge green;
 }
